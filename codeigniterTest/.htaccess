@@ -1,0 +1,16 @@
+# Set the Referrer-Policy header
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Set the X-Content-Type-Options header
+Header set X-Content-Type-Options "nosniff"
+
+# Set the Strict-Transport-Security header (HSTS)
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# Enable the RewriteEngine
+RewriteEngine on
+RewriteBase /codeigniterTest/
+
+# Rewrite rules
+RewriteCond %{REQUEST_URI} !^/codeigniterTest/(index\.php|assets|uploads|files|fonts|images|application|robots\.txt) [NC]
+RewriteRule ^(.*)$ index.php [L]
