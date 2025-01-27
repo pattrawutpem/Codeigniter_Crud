@@ -21,10 +21,10 @@ class Crud_emp_Model extends CI_Model
 
     public function Insert_emp()
     {
-        $this->db->select('COUNT(employee_id) as num');
+        $this->db->select('max(substr(employee_id, 4)) as num');
         $query = $this->db->get($this->table_name);
         $result = $query->row();
-        $new_id = 'emp' . ($result->num + 1);
+        $new_id = 'emp' . (intval($result->num) + 1);
 
         $data = array(
             'employee_id' => $new_id,
